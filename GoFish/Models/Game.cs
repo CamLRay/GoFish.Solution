@@ -20,38 +20,38 @@ namespace GoFish.Models
 
     public void Draw(int num, string player)
     {
-      // Random rnd = new Random();
+      Random rnd = new Random();
       if(player == "player1")
       {
         for (int i = 0; i < num; i++ )
         {
-          // int randI = rnd.Next(_deck.Count);
-          _hand.Add(_deck[0]);
-          _deck.RemoveAt(0);
+          int randI = rnd.Next(_deck.Count);
+          _hand.Add(_deck[randI]);
+          _deck.RemoveAt(randI);
         }
       }
       else if (player == "player2")
       {
         for (int i = 0; i < num; i++ )
         {
-          // int randI = rnd.Next(_deck.Count);
-          _handTwo.Add(_deck[0]);
-          _deck.RemoveAt(0);
+          int randI = rnd.Next(_deck.Count);
+          _handTwo.Add(_deck[randI]);
+          _deck.RemoveAt(randI);
         }
       }
       
     }
 
-    public bool Match(int index, string player)
+    public bool Match(int ind, string player)
     {
 
       if(player == "player1")
       {
       for(int i = 0; i< _handTwo.Count; i++)
         {
-          if(_handTwo[i].Rank == _hand[index].Rank)
+          if(_handTwo[i].Rank == _hand[ind].Rank)
           {
-            _hand.RemoveAt(index);
+            _hand.RemoveAt(ind);
             _handTwo.RemoveAt(i);
             PlayerOneScore += 1;
             return true;
@@ -61,12 +61,12 @@ namespace GoFish.Models
       } 
       else
       {
-        for(int i = 0; i< _handTwo.Count; i++)
+        for(int i = 0; i< _hand.Count; i++)
         {
-          if(_hand[i].Rank == _handTwo[index].Rank)
+          if(_hand[i].Rank == _handTwo[ind].Rank)
           {
             _hand.RemoveAt(i);
-            _handTwo.RemoveAt(index);
+            _handTwo.RemoveAt(ind);
             PlayerTwoScore += 1;
             return true;
           }
@@ -75,17 +75,17 @@ namespace GoFish.Models
       }
     }
 
-    public List<Card> getDeck()
+    public List<Card> GetDeck()
     {
       return _deck;
     }
 
-    public List<Card> getHand()
+    public List<Card> GetHand()
     {
       return _hand;
     }
 
-    public List<Card> getHandTwo()
+    public List<Card> GetHandTwo()
     {
       return _handTwo;
     }

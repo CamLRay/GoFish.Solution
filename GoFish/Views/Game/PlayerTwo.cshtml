@@ -1,0 +1,14 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Player Two's Hand</h1>
+<form action="/PlayerTwo/Match" method="post">
+@using GoFish.Models;
+@for(int i = 0; i < Model.Count; i++)
+{
+  <input type="radio" id="@i" name="group2" value="@i">
+  <label for="@i">@Model[@i].Rank @Model[@i].Suit id is: @i</label><br>
+}
+<button type="submit">Is it a match?</button>
+</form>
